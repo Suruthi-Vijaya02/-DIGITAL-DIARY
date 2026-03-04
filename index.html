@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pink Digital Diary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>🌸 Digital Diary 🌸</h2>
+
+    <!-- Date Picker -->
+    <div class="date-box">
+        <label>Select Date:</label>
+        <input type="date" id="datePicker">
+    </div>
+
+    <!-- Mood Selector -->
+    <div class="mood-box">
+        <label>Today's Mood:</label>
+        <div class="moods">
+            <span onclick="setMood('🤩')">🤩</span>
+            <span onclick="setMood('🙂')">🙂</span>
+            <span onclick="setMood('😐')">😐</span>
+            <span onclick="setMood('😢')">😢</span>
+            <span onclick="setMood('😴')">😴</span>
+        </div>
+        <p id="currentMood" class="currentMood">Mood: -</p>
+    </div>
+
+    <!-- Diary Section -->
+    <div class="diary-section">
+        <h3>📝 Daily Notes</h3>
+        <textarea id="diaryText" placeholder="Write about your day..."></textarea>
+        <button onclick="saveDiary()">Save Notes</button>
+    </div>
+
+    <!-- To-Do Section -->
+    <h3>Tasks for Today</h3>
+    <div class="task-input-box">
+        <input id="taskInput" placeholder="Add task...">
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <!-- Log -->
+    <div class="log-section">
+        <h3>✨ Completed Log ✨</h3>
+        <div id="taskLog"></div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
