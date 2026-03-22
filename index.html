@@ -1,59 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Pink Digital Diary</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pink Productivity App</title>
+    <link rel="stylesheet" href="styles/style.css" />
 </head>
+
 <body>
 
+<div class="sidebar">
+    <h2>🌸 My Space</h2>
+    <button class="nav-btn" onclick="showPage('dashboard')">🏠 Dashboard</button>
+    <button class="nav-btn" onclick="showPage('todo')">📝 To-do</button>
+    <button class="nav-btn" onclick="showPage('journal')">📚 Journal</button>
+    <button class="nav-btn" onclick="showPage('expenses')">💰 Expenses</button>
+
+    <h3 style="margin-top: 30px; color: var(--accent); text-align: center;">Theme</h3>
+    <button class="nav-btn" onclick="setTheme('')">Pink</button>
+    <button class="nav-btn" onclick="setTheme('lavender')">Lavender</button>
+    <button class="nav-btn" onclick="setTheme('cream')">Cream</button>
+</div>
+
 <div class="container">
-
-    <h2>🌸 Digital Diary 🌸</h2>
-
-    <!-- Date Picker -->
-    <div class="date-box">
-        <label>Select Date:</label>
-        <input type="date" id="datePicker">
-    </div>
-
-    <!-- Mood Selector -->
-    <div class="mood-box">
-        <label>Today's Mood:</label>
-        <div class="moods">
-            <span onclick="setMood('🤩')">🤩</span>
-            <span onclick="setMood('🙂')">🙂</span>
-            <span onclick="setMood('😐')">😐</span>
-            <span onclick="setMood('😢')">😢</span>
-            <span onclick="setMood('😴')">😴</span>
+    
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="page show">
+        <h1 style="color: var(--accent);">🌸 Daily Dashboard</h1>
+        
+        <div class="card">
+            <h3 class="section-title">Today's Mood</h3>
+            <p id="todayMood" style="color: #666; font-style: italic;">Tap mood in Diary page (Coming soon!)</p>
         </div>
-        <p id="currentMood" class="currentMood">Mood: -</p>
+
+        <div class="card">
+            <h3 class="section-title">Weekly Mood Heatmap</h3>
+            <div id="heatmap" class="heatmap"></div>
+        </div>
+
+        <div class="card">
+            <h3 class="section-title">Today's Tasks</h3>
+            <p id="todayTasks"></p>
+        </div>
+
+        <div class="card">
+            <h3 class="section-title">Latest Journal Entry</h3>
+            <p id="latestJournal"></p>
+        </div>
     </div>
 
-    <!-- Diary Section -->
-    <div class="diary-section">
-        <h3>📝 Daily Notes</h3>
-        <textarea id="diaryText" placeholder="Write about your day..."></textarea>
-        <button onclick="saveDiary()">Save Notes</button>
+    <!-- TO DO PAGE -->
+    <div id="todo" class="page">
+        <h1 style="color: var(--accent);">📝 To-Do List</h1>
+        <div class="card">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <input id="taskInput" placeholder="Add new task..." style="flex:1;">
+                <button class="nav-btn" style="width: auto; margin:0; padding: 12px 20px;" onclick="addTask()">Add</button>
+            </div>
+            
+            <h3 style="color: var(--accent);">Pending Tasks</h3>
+            <div id="taskList"></div>
+
+            <h3 style="color: var(--accent); margin-top: 25px;">Completed Tasks</h3>
+            <div id="completedList"></div>
+        </div>
     </div>
 
-    <!-- To-Do Section -->
-    <h3>Tasks for Today</h3>
-    <div class="task-input-box">
-        <input id="taskInput" placeholder="Add task...">
-        <button onclick="addTask()">Add</button>
+    <!-- JOURNAL -->
+    <div id="journal" class="page">
+        <h1 style="color: var(--accent);">📖 Journal</h1>
+        <div class="card" style="margin-bottom: 30px;">
+            <textarea id="journalText" rows="6" placeholder="Write your thoughts for today..." style="width: 100%; box-sizing: border-box; margin-bottom: 15px; resize: vertical;"></textarea>
+            <button class="nav-btn" style="width: 100%;" onclick="saveJournal()">📖 Save Entry</button>
+        </div>
+        
+        <h3 style="color: var(--accent);">Past Entries</h3>
+        <div id="journalEntries" style="display: flex; flex-direction: column-reverse; gap: 15px;"></div>
     </div>
 
-    <ul id="taskList"></ul>
-
-    <!-- Log -->
-    <div class="log-section">
-        <h3>✨ Completed Log ✨</h3>
-        <div id="taskLog"></div>
+    <!-- EXPENSES -->
+    <div id="expenses" class="page">
+        <h1 style="color: var(--accent);">💰 Expense Tracker</h1>
+        <div class="card" style="margin-bottom: 30px;">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <input id="expName" placeholder="What did you buy?" style="flex: 2;">
+                <input id="expAmt" placeholder="₹ Amount" type="number" style="flex: 1;">
+                <button class="nav-btn" style="width: auto; margin:0; padding: 12px 20px;" onclick="addExpense()">Add</button>
+            </div>
+        </div>
+        <div class="card">
+            <h3 style="color: var(--accent); margin-top: 0;">History</h3>
+            <div id="expenseList"></div>
+        </div>
     </div>
 
 </div>
 
-<script src="script.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/todo.js"></script>
+<script src="js/journal.js"></script>
+<script src="js/expenses.js"></script>
+<script src="js/theme.js"></script>
+
 </body>
 </html>
